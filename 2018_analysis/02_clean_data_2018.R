@@ -7,7 +7,7 @@ str(nhis18)
 #Creating a day of month variable
 nhis18$DAY <- 1
 
-# formatting the region variable
+#formatting the region variable
 nhis18$REGION <- ifelse(nhis18$REGION ==1, "Northeast", 
                         ifelse(nhis18$REGION ==2, "Midwest",
                                ifelse(nhis18$REGION == 3, "South",
@@ -17,7 +17,7 @@ nhis18$REGION <- ifelse(nhis18$REGION ==1, "Northeast",
 # - I used both COVER and COVER650 Variables 
 # - COVER variable is for adults who are less than 65 years old
 # - COVER65o is for adults who are 65 years or older 
-# I changed missing data(NA) to 99 so that it does not affect the creation of the coverage variable 
+# - I changed missing data(NA) to 99 so that it does not affect the creation of the coverage variable 
 is.na(nhis18$COVER) <- 99
 is.na(nhis18$COVER65O) <- 99
 
@@ -92,12 +92,12 @@ nhis18$ANXEV_A <- ifelse(nhis18$ANX_1 == 1|nhis18$ANX_1 == 2|nhis18$ANX_1 == 3,"
                          ifelse(nhis18$ANX_1 == 4|nhis18$ANX_1 == 5, "No", NA))
 
 
-# formatting the depression variable
+#formatting the depression variable
 nhis18$DEPEV_A <- ifelse(nhis18$DEP_1 == 1|nhis18$DEP_1 == 2|nhis18$DEP_1 == 3,"Yes",
                          ifelse(nhis18$DEP_1 == 4|nhis18$DEP_1 == 5, "No", NA))
 
 
-# formatting and creating variable for mental health status
+#formatting and creating variable for mental health status
 nhis18$ANXEV_A[is.na(nhis18$ANXEV_A)] <- "99"
 nhis18$DEPEV_A[is.na(nhis18$DEPEV_A)] <- "99"
 
@@ -146,14 +146,14 @@ nhis18$FOOD_SECURITY<- cut(nhis18$FOOD_SECURITY, breaks = c(0, 2, 5, Inf),
                            labels = c("high", "low","very low"),
                            include.lowest = TRUE)
 
-# formatting the cigarette smoking variable
+#formatting the cigarette smoking variable
 nhis18$SMKCIGST_A <- ifelse(nhis18$SMKSTAT2 == 1|nhis18$SMKSTAT2 == 2, 1, ifelse(nhis18$SMKSTAT2 ==5|
                                                                                    nhis18$SMKSTAT2 ==9,
                                                                                  NA, 2))
 nhis18$SMKCIGST_A <- factor(nhis18$SMKCIGST_A, labels = c("Yes", "No"))
 
 
-# formatting the e-cigarette smoking variable
+#formatting the e-cigarette smoking variable
 nhis18$SMKECIGST_A <- ifelse(nhis18$ECIGCUR2 == 1|nhis18$ECIGCUR2 == 2, 1, ifelse(nhis18$ECIGCUR2 == 3, 2, NA))
 nhis18$SMKECIGST_A[is.na(nhis18$SMKECIGST_A )] <- 99
 nhis18$SMKECIGST_A <- ifelse(nhis18$SMKECIGST_A == 1, 1, ifelse(nhis18$SMKECIGST_A == 2, 2, 
@@ -161,7 +161,7 @@ nhis18$SMKECIGST_A <- ifelse(nhis18$SMKECIGST_A == 1, 1, ifelse(nhis18$SMKECIGST
 nhis18$SMKECIGST_A <- factor(nhis18$SMKECIGST_A, labels = c("Yes","No"))
 
 
-# formatting the cigar use variable
+#formatting the cigar use variable
 nhis18$CIGARST_A <- ifelse(nhis18$CIGCUR2 == 1|nhis18$CIGCUR2 == 2, 1, ifelse(nhis18$CIGCUR2 == 3, 2, NA))
 nhis18$CIGARST_A[is.na(nhis18$CIGARST_A)] <- 99
 nhis18$CIGARST_A <- ifelse(nhis18$CIGARST_A == 1, 1, ifelse(nhis18$CIGARST_A == 2, 2, 
@@ -169,7 +169,7 @@ nhis18$CIGARST_A <- ifelse(nhis18$CIGARST_A == 1, 1, ifelse(nhis18$CIGARST_A == 
 nhis18$CIGARST_A  <- factor(nhis18$CIGARST_A, labels = c("Yes","No"))
 
 
-# formatting the pipe smoking variable
+#formatting the pipe smoking variable
 nhis18$PIPEST_A <- ifelse(nhis18$PIPECUR2 == 1|nhis18$PIPECUR2 == 2, 1, ifelse(nhis18$PIPECUR2 == 3, 2, NA))
 nhis18$PIPEST_A[is.na(nhis18$PIPEST_A)] <- 99
 nhis18$PIPEST_A <- ifelse(nhis18$PIPEST_A == 1, 1, ifelse(nhis18$PIPEST_A== 2, 2, 
@@ -177,7 +177,7 @@ nhis18$PIPEST_A <- ifelse(nhis18$PIPEST_A == 1, 1, ifelse(nhis18$PIPEST_A== 2, 2
 nhis18$PIPEST_A  <- factor(nhis18$PIPEST_A, labels = c("Yes","No"))
 
 
-# formatting the smokeless tobacco use variable
+#formatting the smokeless tobacco use variable
 nhis18$SMOKELSST_A <- ifelse(nhis18$SMKLSCR2 == 1|nhis18$SMKLSCR2 == 2, 1, ifelse(nhis18$SMKLSCR2 == 3, 2, NA))
 nhis18$SMOKELSST_A[is.na(nhis18$SMOKELSST_A)] <- 99
 nhis18$SMOKELSST_A <- ifelse(nhis18$SMOKELSST_A == 1, 1, ifelse(nhis18$SMOKELSST_A== 2, 2, 
@@ -185,19 +185,20 @@ nhis18$SMOKELSST_A <- ifelse(nhis18$SMOKELSST_A == 1, 1, ifelse(nhis18$SMOKELSST
 nhis18$SMOKELSST_A  <- factor(nhis18$SMOKELSST_A, labels = c("Yes","No"))
 
 
-# formatting the cigarette and e-cigarette dual use variable
+#formatting the cigarette and e-cigarette dual use variable
 nhis18$cig_ecig <- ifelse(nhis18$SMKCIGST_A == "Yes" & nhis18$SMKECIGST_A == "Yes", "Yes", "No")
 
-# formatting the cigarette and cigar dual use variable
+#formatting the cigarette and cigar dual use variable
 nhis18$cig_cigar <- ifelse(nhis18$SMKCIGST_A == "Yes" & nhis18$CIGARST_A == "Yes", "Yes", "No")
 
-# formatting the cigarette and pipe dual use variable
+#formatting the cigarette and pipe dual use variable
 nhis18$cig_pipe <- ifelse(nhis18$SMKCIGST_A == "Yes" & nhis18$PIPEST_A == "Yes", "Yes", "No")
 
-# formatting the cigarette and smokeless tobacco dual use variable
+#formatting the cigarette and smokeless tobacco dual use variable
 nhis18$cig_smkles <- ifelse(nhis18$SMKCIGST_A == "Yes" & nhis18$SMOKELSST_A == "Yes", "Yes", "No")
 
 table(nhis18$COVERAGE)
-# creating a csv file for the cleaned data
+
+#creating a csv file for the cleaned data
 write_csv(nhis18, "final_data_2018_clean.csv")
 
