@@ -32,7 +32,7 @@ adult2018_lite <- adult2018 %>%
              SMKEV, SMKREG, SMKNOW, SMKSTAT2,SMKQTNO, SMKQTTP, SMKQTY, CIGSDA1, CIGDAMO, CIGSDA2, CIGSDAY, CIGQTYR, 
              ECIGEV2, ECIGCUR2, ECIG30D2, CIGAREV2, CIGCUR2, CIG30D2, PIPEV2, PIPECUR2, SMKLSTB1, SMKLSCR2) 
 
-#extracting needed variables from family 2018
+#extracting needed variables from person 2018
 person2018_lite <- person2018 %>%
     select(SRVY_YR, HHX, FMX, FPX, EDUC1, COVER, COVER65O)
 
@@ -44,7 +44,7 @@ final_join <- merge(second_join, person2018_lite, by=c("SRVY_YR", "HHX", "FMX", 
 #Rearranging the variables after merging
 final_data_2018 <- final_join %>%
     select(SRVY_YR, INTV_MON, FMX, FPX,
-         HHX, ACPT_FAM, WTFA_HH, WTFA_FAM, WTFA_SA, PSTRAT, PPSU,
+        HHX, ACPT_FAM, WTFA_HH, WTFA_FAM, WTFA_SA, PSTRAT, PPSU,
         AGE_P, SEX, REGION, RACERPI2, R_MARITL, ASISIM, ASISIF,
         HOUSEOWN, FM_SIZE, FM_KIDS, FM_ELDR, FM_TYPE, EDUC1,
         DOINGLWA, WRKCATA, ONEJOB, WRKLYR4, YRSWRKPA, 
